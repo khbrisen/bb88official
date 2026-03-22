@@ -1,0 +1,235 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home" description="Babu88 is South Asia's favourite online casino offering sports betting, live casino, slots, and crash games.">
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Babu88Official",
+      "url": "https://babu88official.com",
+      "logo": "https://babu88official.com/images/logo-1.png",
+      "description": "South Asia's favourite online casino and sports betting platform.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "admin@babu88.com",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Bengali", "Hindi"]
+      }
+    })} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="hero" style="background-image:url('/images/banner.webp');background-blend-mode:multiply;padding:100px 20px 80px;">
+    <div class="container">
+      <h1>BABU88 is South Asia's favourite online casino!</h1>
+      <p>Babu88 is an online gambling company, offering a wide range of betting and casino options. The company operates within the legal framework in Bangladesh and extends its offerings in a compliant and responsible manner.</p>
+    </div>
+  </section>
+
+  <!-- Why Play With Us -->
+  <section class="section section--light">
+    <div class="container">
+      <h2 class="section-title">Why Play With Us?</h2>
+      <div class="grid-3">
+        <div style="text-align:center;">
+          <h3>We Listen</h3>
+          <p>We actively listen to our players, tailoring our services to meet your preferences.</p>
+        </div>
+        <div style="text-align:center;">
+          <h3>We Are Fast</h3>
+          <p>We're swift to address players' concerns, ensuring a seamless gaming experience.</p>
+        </div>
+        <div style="text-align:center;">
+          <h3>We Are Safe</h3>
+          <p>Keeping up with industry standards of safety and data security.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Choose Your Country -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Choose Your Country</h2>
+      <div class="grid-3" style="text-align:center;">
+        <div>
+          <img src="/images/1-2.webp" alt="Babu88 India" style="border-radius:10px;margin-bottom:12px;" />
+          <h3>BABU88 INDIA</h3>
+        </div>
+        <div>
+          <img src="/images/2-1-1.webp" alt="Babu88 Bangladesh" style="border-radius:10px;margin-bottom:12px;" />
+          <h3>BABU88 BANGLADESH</h3>
+        </div>
+        <div>
+          <img src="/images/nepali.png" alt="Babu88 Nepal" style="border-radius:10px;margin-bottom:12px;" />
+          <h3>BABU88 NEPAL</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products & Services -->
+  <section class="section section--gold">
+    <div class="container">
+      <div class="grid-3">
+        <div>
+          <h2 style="font-size:2rem;line-height:1.2;">Our Product &amp; Services</h2>
+          <p><strong>We're your gateway to unparalleled gaming excitement. With a diverse game selection and user-friendly interface, we offer a world of entertainment.</strong></p>
+        </div>
+        <div>
+          <div class="blurb">
+            <h3>Sports Betting</h3>
+            <p>Whether you're wagering on MUFC's comeback in the Premier League, or CSK for the finals of the IPL, cricket exchange and sportsbetting platform Betswiz and Dream Exchange has you covered.</p>
+            <p>Sportsbook options are available as well though BTI or IBC sport to cover all your sports betting needs.</p>
+          </div>
+          <div class="blurb" style="margin-top:20px;">
+            <h3>Live Casino</h3>
+            <p>Partnering with big names like Pragmatic Play and Evolution Gaming, Babu88 brings you timeless favorites such as Andar Bahar and Blackjack, plus trending hits like Crazy Time and Money Wheel.</p>
+          </div>
+        </div>
+        <div>
+          <div class="blurb">
+            <h3>Slot Games</h3>
+            <p>Fan favourites like Money Coming, Boxing King, and Sweetland can all be found from on the Babu88 platform.</p>
+            <p>Bringing all the latest from Jili Slots, Pragmatic Play, and more!</p>
+          </div>
+          <div class="blurb" style="margin-top:20px;">
+            <h3>Crash Gaming</h3>
+            <p>Nothing quite like the thrill of pulling the trigger at the right time.</p>
+            <p>Users can expect the best in the business, such as Aviator from Spribe and more.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sports Betting -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <h2>The Industry Leader in Online Sports Betting</h2>
+          <p>BABU88 offers live sports betting and specialised cricket exchanges!</p>
+          <p>With various promotions and live sponsorships such as the Montreal Tigers in GT20, or Dambulla Aura in LPL, there is never a shortage of excitement for sports fans on the Babu88 platform.</p>
+        </div>
+        <div>
+          <img src="/images/babu88-official.webp" alt="Babu88 Sports Betting" style="border-radius:10px;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hot Games -->
+  <section class="section section--light">
+    <div class="container">
+      <h2 class="section-title">Elevate your excitement with our new and hot games!</h2>
+      <p style="text-align:center;margin-bottom:32px;">Experience the best of online casino games from the top providers.</p>
+      <div class="grid-3">
+        <div class="game-card">
+          <img src="/images/money-coming-icon.png" alt="Money Coming" />
+          <p>Money Coming (Jili)</p>
+        </div>
+        <div class="game-card">
+          <img src="/images/Untitled-design-3.png" alt="Sweet Land" />
+          <p>Sweet Land (Jili)</p>
+        </div>
+        <div class="game-card">
+          <img src="/images/aviator-icon.png" alt="Aviator Live" />
+          <p>Aviator Live</p>
+        </div>
+        <div class="game-card">
+          <img src="/images/crazy_time_Thumbnail_BG.png" alt="Monopoly Live" />
+          <p>Monopoly Live</p>
+        </div>
+        <div class="game-card">
+          <img src="/images/Untitled-design-4-1.png" alt="Boxing King" />
+          <p>Boxing King (Jili)</p>
+        </div>
+        <div class="game-card">
+          <img src="/images/AE-Sexy.png" alt="Sexy Baccarat" />
+          <p>Sexy Baccarat (AE Sexy)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile App -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <h2>Mobile Application</h2>
+          <p>Babu88 offers a mobile application that replicates all the gambling features found on the official site. The app provides a snappier experience optimized for Android devices.</p>
+          <p>All of our products are designed to run fully optimised via your browser, which means you can experience a smooth gaming journey regardless of device.</p>
+          <a href="#" class="cta-button">Download App</a>
+        </div>
+        <div>
+          <img src="/images/babu88mobile_app-removebg-preview.png" alt="Babu88 Mobile App" style="max-width:400px;margin:0 auto;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Affiliate / Partners -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <h2>Become a Babu88 Partner Today!</h2>
+          <h3>Babu88Agents</h3>
+          <p>South Asian Affiliate Program for our local partners. Refer a friend and start earning today. Providing lucrative offers and commission based offers for our local partners since 2022.</p>
+          <a href="#" class="cta-button" style="margin-top:12px;">Become an Agent</a>
+        </div>
+        <div>
+          <h3>Transform TRAFFIC into PROFITS with BABU88Partners</h3>
+          <p>No. 1 South Asian Casino Affiliate Program with high commissions. If you're an online marketer, or operate a website that generates iGaming traffic in South Asian markets, BABU88Partners is your one stop destination for maximizing returns.</p>
+          <a href="#" class="cta-button" style="margin-top:12px;">Join BABU88Partners</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gold" style="text-align:center;">
+    <div class="container">
+      <h2>Reach Out To Us</h2>
+      <hr style="width:30%;margin:0 auto 16px;border-color:#000;" />
+      <p>We're committed to helping you. Reach out anytime with your questions and feedback, as your satisfaction is important to us, and we're here to provide the information and support you need.</p>
+      <a href="/contact-us/" class="cta-button" style="margin-top:8px;">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width:900px;">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I create an account on Babu88?</summary>
+        <p>To create an account, visit our website and click on the "Sign Up" or "Register" button. Follow the provided instructions, fill in your details, and you'll be all set to start playing.</p>
+      </details>
+
+      <details>
+        <summary>What types of games are available on Babu88?</summary>
+        <p>Babu88 offers a wide variety of games, including slots, table games, live casino games, sports betting, and more. You can explore our game library to find your favorites.</p>
+      </details>
+
+      <details>
+        <summary>How do I deposit and withdraw funds on Babu88?</summary>
+        <p>Depositing and withdrawing funds is simple. Log in to your account, go to the cashier or banking section, select your preferred payment method, and follow the instructions. We support various payment options for your convenience.</p>
+      </details>
+
+      <details>
+        <summary>Are my personal and financial details secure on Babu88?</summary>
+        <p>Yes, we take the security and privacy of your information seriously. Babu88 employs advanced encryption and security measures to protect your data. We also adhere to strict privacy policies to ensure your information is safe.</p>
+      </details>
+
+      <details>
+        <summary>What bonuses and promotions are available for players on Babu88?</summary>
+        <p>Babu88 offers a range of bonuses and promotions, including welcome bonuses, cashback offers, and loyalty programs. Check our promotions page for the latest offers and terms and conditions.</p>
+      </details>
+    </div>
+  </section>
+</BaseLayout>

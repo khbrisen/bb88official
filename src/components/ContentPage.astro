@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { cleanContent, extractH1, extractDescription, extractFaqs, removeFaqFromContent } from '../utils/content';
+
+interface Props {
+  pageData: { title: string; content: string; slug: string };
+  isLegal?: boolean;
+}
+
+const { pageData, isLegal = false } = Astro.props;
+
+let html = cleanContent(pageData.content);
+const [h1Text, afterH1] = extractH1(html);
+const title = h1Text || pageData.title;
+const description = extractDescription(afterH1 || html);
+const faqs = extractFaqs(html);
+const mainContent = faqs.length > 0 ? removeFaqFromContent(html) : html;
+// Remove h1 from main content since we render it in the hero/heading
+const bodyContent = mainContent.replace(/<h1[^>]*>.*?<\/h1>/i, '').trim();
+---
+
+<BaseLayout title={title} description={description}>
+  {!isLegal && (
+    <section class="hero" style="background-image:url('/images/banner.webp');background-blend-mode:multiply;">
+      <div class="container">
+        <h1>{title}</h1>
+        {description && <p>{description}</p>}
+      </div>
+    </section>
+  )}
+
+  <section class={isLegal ? 'legal-body' : 'content-body'}>
+    {isLegal && <h1>{title}</h1>}
+    <Fragment set:html={bodyContent} />
+  </section>
+
+  {faqs.length > 0 && (
+    <section class="section section--light">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        {faqs.map((faq) => (
+          <details>
+            <summary>{faq.question}</summary>
+            <div set:html={faq.answer} />
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://babu88official.com/sitemap-index.xml

@@ -1,0 +1,38 @@
+---
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/">
+      <img src="/images/logo-1.png" alt="Babu88 Official" class="logo" />
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about-us/">About Us</a></li>
+      <li class="nav-dropdown">
+        <a href="#">Casino Games</a>
+        <ul class="dropdown-menu">
+          <li><a href="/baccarat/">Baccarat</a></li>
+          <li><a href="/roulette/">Roulette</a></li>
+          <li><a href="/what-are-the-slots/">Slots</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact-us/">Contact Us</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger?.addEventListener('click', () => {
+    navLinks?.classList.toggle('open');
+  });
+</script>
