@@ -386,6 +386,62 @@ details p {
   margin: 0;
 }
 
+/* ── Divi section/grid system ──────────────────────────────────────── */
+.divi-section {
+  padding: 60px 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.divi-section .container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.divi-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.divi-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.divi-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.divi-grid-sidebar {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 40px;
+}
+
+.divi-col {
+  min-width: 0;
+}
+
+.divi-col img {
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+@media (max-width: 768px) {
+  .divi-grid-2,
+  .divi-grid-3,
+  .divi-grid-4,
+  .divi-grid-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Content page ─────────────────────────────────────────────────── */
 .content-body {
   max-width: 900px;

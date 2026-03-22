@@ -10,6 +10,7 @@ interface Props {
 const { pageData, isLegal = false } = Astro.props;
 
 let html = cleanContent(pageData.content);
+const isDivi = html.includes('divi-section');
 const [h1Text, afterH1] = extractH1(html);
 const title = h1Text || pageData.title;
 const description = extractDescription(afterH1 || html);
@@ -29,10 +30,14 @@ const bodyContent = mainContent.replace(/<h1[^>]*>.*?<\/h1>/i, '').trim();
     </section>
   )}
 
-  <section class={isLegal ? 'legal-body' : 'content-body'}>
-    {isLegal && <h1>{title}</h1>}
+  {isDivi ? (
     <Fragment set:html={bodyContent} />
-  </section>
+  ) : (
+    <section class={isLegal ? 'legal-body' : 'content-body'}>
+      {isLegal && <h1>{title}</h1>}
+      <Fragment set:html={bodyContent} />
+    </section>
+  )}
 
   {faqs.length > 0 && (
     <section class="section section--light">

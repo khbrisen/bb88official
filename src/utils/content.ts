@@ -88,6 +88,34 @@ function parseDivi(input: string): DiviBlock[] {
 }
 
 /**
+ * Derive inline style from Divi section/row attributes.
+ */
+function sectionStyle(attrs: Record<string, string>): string {
+  const parts: string[] = [];
+  if (attrs.background_color) parts.push(`background-color:${attrs.background_color}`);
+  if (attrs.background_image) parts.push(`background-image:url('${attrs.background_image}')`);
+  if (attrs.background_position) parts.push(`background-position:${attrs.background_position.replace('_', ' ')}`);
+  if (attrs.background_blend) parts.push(`background-blend-mode:${attrs.background_blend}`);
+  if (attrs.custom_padding) {
+    const p = attrs.custom_padding.split('|').map(v => v === '' || v === 'false' ? '0' : v).slice(0, 4).join(' ');
+    parts.push(`padding:${p}`);
+  }
+  return parts.length ? ` style="${parts.join(';')}"` : '';
+}
+
+/**
+ * Determine grid class from Divi column_structure attribute.
+ */
+function gridClass(attrs: Record<string, string>): string {
+  const cs = attrs.column_structure || '';
+  if (cs.includes('1_3,1_3,1_3')) return 'divi-grid-3';
+  if (cs.includes('1_2,1_2')) return 'divi-grid-2';
+  if (cs.includes('1_4,3_4') || cs.includes('3_4,1_4')) return 'divi-grid-sidebar';
+  if (cs.includes('1_4')) return 'divi-grid-4';
+  return '';
+}
+
+/**
  * Convert a Divi block tree into clean HTML.
  */
 function renderDivi(blocks: DiviBlock[]): string {
@@ -95,11 +123,28 @@ function renderDivi(blocks: DiviBlock[]): string {
 
   for (const block of blocks) {
     switch (block.tag) {
-      case 'et_pb_section':
-      case 'et_pb_row':
-      case 'et_pb_column':
-        // Structural containers – just render children
+      case 'et_pb_section': {
+        const style = sectionStyle(block.attrs);
+        html += `<section class="divi-section"${style}>\n`;
+        html += `<div class="container">\n`;
         html += renderDivi(block.children);
+        html += `</div>\n</section>\n`;
+        break;
+      }
+
+      case 'et_pb_row': {
+        const grid = gridClass(block.attrs);
+        const cls = grid ? ` class="${grid}"` : '';
+        html += `<div${cls}>\n`;
+        html += renderDivi(block.children);
+        html += `</div>\n`;
+        break;
+      }
+
+      case 'et_pb_column':
+        html += `<div class="divi-col">\n`;
+        html += renderDivi(block.children);
+        html += `</div>\n`;
         break;
 
       case 'et_pb_heading': {
