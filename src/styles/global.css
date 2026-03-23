@@ -305,7 +305,85 @@ main {
   color: var(--white);
 }
 
-/* Game card */
+/* Country grid */
+.country-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.country-card img {
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.country-card h3 {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .country-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+/* Hot games grid */
+.hot-games-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hot-game-card {
+  background: var(--dark);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid #333;
+}
+
+.hot-game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  border-color: var(--gold);
+}
+
+.hot-game-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.hot-game-card p {
+  color: var(--white);
+  font-weight: 600;
+  padding: 8px 6px;
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .hot-games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .hot-games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Game card (legacy) */
 .game-card {
   background: var(--dark);
   border-radius: 10px;

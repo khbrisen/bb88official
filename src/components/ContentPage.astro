@@ -5,6 +5,7 @@ import { cleanContent, extractH1, extractDescription, extractFaqs, removeFaqFrom
 interface Props {
   pageData: { title: string; content: string; slug: string };
   isLegal?: boolean;
+  noHero?: boolean;
 }
 
 const { pageData, isLegal = false } = Astro.props;
@@ -21,7 +22,7 @@ const bodyContent = mainContent.replace(/<h1[^>]*>.*?<\/h1>/i, '').trim();
 ---
 
 <BaseLayout title={title} description={description}>
-  {!isLegal && (
+  {!isLegal && !Astro.props.noHero && (
     <section class="hero" style="background-image:url('/images/banner.webp');background-blend-mode:multiply;">
       <div class="container">
         <h1>{title}</h1>
