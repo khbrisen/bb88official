@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const blogFiles = import.meta.glob('../../data/blog/*.json', { eager: true });
+const posts = Object.values(blogFiles)
+  .map((mod: any) => mod.default || mod)
+  .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<BaseLayout title="Blog" description="Latest news, updates, and insights from Babu88 — sports sponsorships, new game providers, and more.">
+  <section class="hero" style="background-image:url('/images/banner.webp');background-blend-mode:multiply;">
+    <div class="container">
+      <h1>Babu88 Blog</h1>
+      <p>Latest news, updates, and insights from Babu88</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="blog-grid">
+        {posts.map((post: any) => (
+          <a href={`/blog/${post.slug}/`} class="blog-card">
+            <div class="blog-card__image">
+              <img src={post.featuredImage} alt={post.featuredImageAlt} loading="lazy" />
+            </div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">{post.category}</span>
+              <h2 class="blog-card__title">{post.title}</h2>
+              <p class="blog-card__excerpt">{post.excerpt}</p>
+              <time class="blog-card__date" datetime={post.date}>
+                {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 32px;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    text-decoration: none;
+  }
+
+  .blog-card__image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .blog-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-card__body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .blog-card__category {
+    display: inline-block;
+    background: var(--gold);
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    width: fit-content;
+  }
+
+  .blog-card__title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    color: var(--dark);
+  }
+
+  .blog-card__excerpt {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .blog-card__date {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

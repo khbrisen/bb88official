@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const blogFiles = import.meta.glob('../../data/blog/*.json', { eager: true });
+  return Object.values(blogFiles).map((mod: any) => {
+    const post = mod.default || mod;
+    return {
+      params: { slug: post.slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={post.title} description={post.excerpt} canonical={`https://babu88official.com/blog/${post.slug}/`}>
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "image": `https://babu88official.com${post.featuredImage}`,
+      "datePublished": post.date,
+      "author": {
+        "@type": "Organization",
+        "name": "Babu88Official"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Babu88Official",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://babu88official.com/images/logo-1.png"
+        }
+      },
+      "description": post.excerpt
+    })} />
+  </Fragment>
+
+  <section class="hero" style="background-image:url('/images/banner.webp');background-blend-mode:multiply;">
+    <div class="container">
+      <h1>{post.title}</h1>
+      <div class="blog-meta">
+        <span class="blog-meta__category">{post.category}</span>
+        <time datetime={post.date}>{formattedDate}</time>
+      </div>
+    </div>
+  </section>
+
+  <article class="blog-article">
+    <div class="container">
+      <img src={post.featuredImage} alt={post.featuredImageAlt} class="blog-article__hero-image" />
+      <div class="blog-article__content" set:html={post.content} />
+      <div class="blog-article__back">
+        <a href="/blog/" class="cta-button">Back to Blog</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .blog-meta__category {
+    background: var(--gold);
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .blog-meta time {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+  }
+
+  .blog-article {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
+
+  .blog-article__hero-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 32px;
+  }
+
+  .blog-article__content :global(h2) {
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .blog-article__content :global(h3) {
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  .blog-article__content :global(img) {
+    border-radius: 8px;
+    margin: 24px 0;
+  }
+
+  .blog-article__content :global(figure) {
+    margin: 24px 0;
+  }
+
+  .blog-article__content :global(ul) {
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+
+  .blog-article__back {
+    margin-top: 48px;
+    text-align: center;
+  }
+</style>
